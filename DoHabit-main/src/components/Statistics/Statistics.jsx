@@ -12,6 +12,7 @@ import Card from './Card';
 import WeekdayChart from './WeekdayChart';
 import MonthlyChart from './MonthlyChart';
 import StreakHistory from './StreakHistory';
+import AIHabitInsight from './AIHabitInsight';
 
 // utils
 import getStreaks from '../../utils/getStreaks';
@@ -69,8 +70,17 @@ function Statistics() {
 		}
 	};
 
+	// Get the current habit for AI analysis
+	const habitForAnalysis = {
+		title: location.state.modalTitle || 'Habit',
+		completedDays,
+		frequency
+	};
+
 	return (
 		<div className={styles.statistics}>
+			<AIHabitInsight habit={habitForAnalysis} />
+			
 			<YearPicker
 				{...{ earliestYear, currYear, selectedYear }}
 				increase={handleIncreaseYear}

@@ -6,11 +6,16 @@ import Diary from '../components/Diary/Diary';
 import HabitEditor from '../components/HabitEditor/HabitEditor';
 import Menu from '../components/Menu/Menu';
 import Statistics from '../components/Statistics/Statistics';
+import AISettings from '../components/AI/AISettings';
 
 const modalRoutes = [
 	{
 		path: 'achievements',
 		element: <Achievements />
+	},
+	{
+		path: 'aiSettings',
+		element: <AISettings />
 	},
 	{
 		path: 'appearance',

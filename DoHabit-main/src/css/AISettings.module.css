@@ -1,0 +1,286 @@
+.aiSettings {
+	padding: 1rem;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 1.5rem;
+}
+
+.icon {
+	font-size: 2rem;
+	color: #a78bfa;
+}
+
+.header h2 {
+	margin: 0;
+	font-size: 1.5rem;
+	color: #fff;
+}
+
+.infoSection {
+	background: rgba(167, 139, 250, 0.1);
+	border: 1px solid rgba(167, 139, 250, 0.3);
+	border-radius: 0.75rem;
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+	display: flex;
+	gap: 1rem;
+}
+
+.infoIcon {
+	color: #a78bfa;
+	font-size: 1.5rem;
+	flex-shrink: 0;
+	margin-top: 0.25rem;
+}
+
+.infoText p {
+	margin: 0 0 0.75rem 0;
+	color: #e5e7eb;
+	line-height: 1.6;
+}
+
+.infoText p:last-child {
+	margin-bottom: 0;
+}
+
+.privacy {
+	font-size: 0.875rem;
+	color: #999 !important;
+}
+
+.section {
+	margin-bottom: 1.5rem;
+}
+
+.switchContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.switchContainer span {
+	color: #fff;
+	font-weight: 500;
+}
+
+.switch {
+	width: 50px;
+	height: 26px;
+	appearance: none;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 13px;
+	cursor: pointer;
+	position: relative;
+	transition: background 0.3s;
+}
+
+.switch::before {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: white;
+	top: 3px;
+	left: 3px;
+	transition: transform 0.3s;
+}
+
+.switch:checked {
+	background: #a78bfa;
+}
+
+.switch:checked::before {
+	transform: translateX(24px);
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: #fff;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+}
+
+.keyIcon {
+	color: #a78bfa;
+}
+
+.inputGroup {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.input {
+	flex: 1;
+	padding: 0.75rem;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 0.5rem;
+	color: #fff;
+	font-size: 1rem;
+	transition: all 0.2s;
+}
+
+.input:focus {
+	outline: none;
+	border-color: #a78bfa;
+	background: rgba(255, 255, 255, 0.15);
+}
+
+.input:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.toggleButton {
+	padding: 0.75rem 1rem;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 0.5rem;
+	color: #a78bfa;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.toggleButton:hover:not(:disabled) {
+	background: rgba(167, 139, 250, 0.2);
+}
+
+.toggleButton:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.maskedKey {
+	font-size: 0.875rem;
+	color: #999;
+	margin: 0.5rem 0 0 0;
+}
+
+.getKeySection {
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 0.75rem;
+	padding: 1.25rem;
+	margin-bottom: 1.5rem;
+}
+
+.getKeySection h3 {
+	margin: 0 0 1rem 0;
+	font-size: 1rem;
+	color: #fff;
+}
+
+.steps {
+	margin: 0;
+	padding-left: 1.5rem;
+	color: #e5e7eb;
+	line-height: 1.8;
+}
+
+.steps li {
+	margin-bottom: 0.5rem;
+}
+
+.link {
+	color: #a78bfa;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	transition: color 0.2s;
+}
+
+.link:hover {
+	color: #c4b5fd;
+}
+
+.features {
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 0.75rem;
+	padding: 1.25rem;
+	margin-bottom: 1.5rem;
+}
+
+.features h3 {
+	margin: 0 0 1rem 0;
+	font-size: 1rem;
+	color: #fff;
+}
+
+.features ul {
+	margin: 0;
+	padding-left: 1.5rem;
+	color: #e5e7eb;
+	line-height: 1.8;
+}
+
+.features li {
+	margin-bottom: 0.5rem;
+}
+
+.actions {
+	margin-bottom: 1.5rem;
+}
+
+.saveButton {
+	width: 100%;
+	padding: 0.875rem 1.5rem;
+	background: #a78bfa;
+	color: white;
+	border: none;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	transition: all 0.2s;
+}
+
+.saveButton:hover:not(:disabled) {
+	background: #9333ea;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+}
+
+.saveButton:active:not(:disabled) {
+	transform: translateY(0);
+}
+
+.saveButton:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.note {
+	background: rgba(234, 179, 8, 0.1);
+	border: 1px solid rgba(234, 179, 8, 0.3);
+	border-radius: 0.5rem;
+	padding: 1rem;
+}
+
+.note p {
+	margin: 0;
+	color: #fef3c7;
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+
+.note strong {
+	color: #fde047;
+}

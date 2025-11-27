@@ -10,7 +10,7 @@ import clearLocalStorage from '../../utils/clearLocalStorage';
 
 // icons
 import { BsFillDatabaseFill } from "react-icons/bs";
-import { FaGithub, FaPaintBrush } from "react-icons/fa";
+import { FaGithub, FaPaintBrush, FaBrain } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { ImFire } from "react-icons/im";
 import { HiArchiveBox } from "react-icons/hi2";
@@ -21,6 +21,16 @@ function Menu() {
 	return (
 		<section className={styles.menu}>
 			<MenuItemList title="App">
+				<MenuItem
+					icon={<FaBrain />}
+					iconColor="#a78bfa"
+					title="AI Settings"
+					desc="Configure AI-powered insights"
+					to={`${PUBLIC_URL}/modal/aiSettings`}
+					state={{ modalTitle: 'AI Settings' }}
+					arrow
+				/>
+
 				<MenuItem
 					icon={<HiArchiveBox />}
 					iconColor="#7b68ee"

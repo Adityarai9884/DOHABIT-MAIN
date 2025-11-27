@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import Header from './Header';
 import HabitList from './HabitList';
 import Placeholder from './Placeholder';
+import AIInsights from './AI/AIInsights';
 
 // icons
 import { ReactComponent as Calendar } from '../img/calendar.svg';
@@ -70,18 +71,23 @@ function MainPage() {
     <motion.div className={styles.mainPage} {...mainVariants}>
       <Header />
 
+      {filteredHabits.length > 0 && <AIInsights />}
+
       <HabitList habits={filteredHabits} />
 
       {filteredHabits.length === 0 && (
-        <Placeholder
-          image={<Calendar />}
-          title="No active habits found"
-          desc="Why not create one now?"
-          textOnButton="Create First Habit"
-          buttonIcon={<MdAddToPhotos />}
-          to={`${process.env.PUBLIC_URL}/modal/habitEditor`}
-          state={{ modalTitle: 'Create new habit' }}
-        />
+        <>
+          <AIInsights />
+          <Placeholder
+            image={<Calendar />}
+            title="No active habits found"
+            desc="Why not create one now?"
+            textOnButton="Create First Habit"
+            buttonIcon={<MdAddToPhotos />}
+            to={`${process.env.PUBLIC_URL}/modal/habitEditor`}
+            state={{ modalTitle: 'Create new habit' }}
+          />
+        </>
       )}
     </motion.div>
   );

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Settings Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button {
+            background: #a78bfa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #9333ea;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            background: #333;
+            border-radius: 5px;
+        }
+        .success {
+            background: #22c55e33;
+            border: 1px solid #22c55e;
+        }
+        .error {
+            background: #ef444433;
+            border: 1px solid #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Settings Test</h1>
+        
+        <div class="status" id="status">
+            Click "Check Settings" to see current configuration
+        </div>
+
+        <button onclick="checkSettings()">Check Settings</button>
+        <button onclick="setDefaultKey()">Set Default API Key</button>
+        <button onclick="clearSettings()">Clear All Settings</button>
+        
+        <div style="margin-top: 20px;">
+            <h3>Manual Test:</h3>
+            <input type="text" id="apiKeyInput" placeholder="Enter API Key" style="width: 100%; padding: 10px; margin: 5px 0; background: #333; border: 1px solid #555; color: white; border-radius: 5px;">
+            <button onclick="saveCustomKey()">Save Custom Key</button>
+        </div>
+    </div>
+
+    <script>
+        function checkSettings() {
+            const apiKey = localStorage.getItem('geminiApiKey');
+            const enabled = localStorage.getItem('aiEnabled');
+            
+            const statusDiv = document.getElementById('status');
+            
+            if (apiKey && apiKey.length > 0) {
+                const masked = apiKey.substring(0, 10) + '...' + apiKey.substring(apiKey.length - 4);
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = `
+                    <h3>✅ AI Settings Found!</h3>
+                    <p><strong>API Key:</strong> ${masked}</p>
+                    <p><strong>Enabled:</strong> ${enabled === 'true' ? 'Yes' : 'No'}</p>
+                    <p><strong>Full Key:</strong> ${apiKey}</p>
+                `;
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `
+                    <h3>❌ No API Key Found</h3>
+                    <p>API key is not configured in localStorage</p>
+                `;
+            }
+        }
+
+        function setDefaultKey() {
+            const defaultKey = 'AIzaSyC_R79ICFDSNBFnfpsivPyCPscP4Hsj2tQ';
+            localStorage.setItem('geminiApiKey', defaultKey);
+            localStorage.setItem('aiEnabled', 'true');
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status success';
+            statusDiv.innerHTML = `
+                <h3>✅ Default API Key Set!</h3>
+                <p>API Key: ${defaultKey.substring(0, 10)}...${defaultKey.substring(defaultKey.length - 4)}</p>
+                <p>Enabled: Yes</p>
+                <p><strong>Now reload your DoHabit app!</strong></p>
+            `;
+        }
+
+        function saveCustomKey() {
+            const customKey = document.getElementById('apiKeyInput').value;
+            if (customKey.trim()) {
+                localStorage.setItem('geminiApiKey', customKey);
+                localStorage.setItem('aiEnabled', 'true');
+                
+                const statusDiv = document.getElementById('status');
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = `
+                    <h3>✅ Custom API Key Saved!</h3>
+                    <p>Key: ${customKey.substring(0, 10)}...${customKey.substring(customKey.length - 4)}</p>
+                    <p><strong>Now reload your DoHabit app!</strong></p>
+                `;
+            }
+        }
+
+        function clearSettings() {
+            localStorage.removeItem('geminiApiKey');
+            localStorage.removeItem('aiEnabled');
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status error';
+            statusDiv.innerHTML = `
+                <h3>🗑️ Settings Cleared</h3>
+                <p>All AI settings have been removed from localStorage</p>
+            `;
+        }
+
+        // Auto-check on load
+        window.onload = function() {
+            checkSettings();
+        };
+    </script>
+</body>
+</html>
