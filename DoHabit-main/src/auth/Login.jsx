@@ -1,29 +1,77 @@
 import { useState } from "react";
-import { sendOtp } from "./api";
+import { signIn, signUp } from "./api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
-  const handleSendOtp = async () => {
-    const res = await sendOtp(email);
+  // Redirect if already logged in
+  if (user) {
+    navigate("/");
+    return null;
+  }
+
+  const handleSubmit = async () => {
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    const res = isSignUp 
+      ? await signUp(email, password)
+      : await signIn(email, password);
+
+    setLoading(false);
+
     if (res.success) {
-      localStorage.setItem("email", email);
-      navigate("/otp");
+      if (isSignUp) {
+        setError("Sign up successful! Please check your email to verify your account.");
+      } else {
+        navigate("/");
+      }
+    } else {
+      setError(res.error || "An error occurred");
     }
   };
 
   return (
     <div className="auth-box">
-      <h2>Login</h2>
+      <h2>{isSignUp ? "Sign Up" : "Login"}</h2>
+      {error && <p style={{ color: error.includes("successful") ? "green" : "red" }}>{error}</p>}
       <input
         type="email"
         placeholder="Enter Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button onClick={handleSendOtp}>Send OTP</button>
+      <input
+        type="password"
+        placeholder="Enter Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleSubmit} disabled={loading}>
+        {loading ? "Loading..." : (isSignUp ? "Sign Up" : "Login")}
+      </button>
+      <button 
+        onClick={() => {
+          setIsSignUp(!isSignUp);
+          setError("");
+        }}
+        style={{ marginTop: "10px" }}
+      >
+        {isSignUp ? "Already have an account? Login" : "Don't have an account? Sign Up"}
+      </button>
     </div>
   );
 }

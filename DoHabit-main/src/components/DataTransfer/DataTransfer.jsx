@@ -4,8 +4,10 @@ import styles from '../../css/DataTransfer.module.css';
 import Placeholder from '../Placeholder';
 
 // utils
-import exportAllData from '../../utils/exportAllData';
-import importAllData from '../../utils/importAllData';
+import { exportAllDataFromSupabase, importAllDataToSupabase } from '../../utils/supabaseDataTransfer';
+
+// auth
+import { useAuth } from '../../contexts/AuthContext';
 
 // icons
 import { ReactComponent as Export } from '../../img/upload.svg'
@@ -14,6 +16,23 @@ import { BsDatabaseFillUp } from "react-icons/bs";
 import { BsDatabaseFillDown } from "react-icons/bs";
 
 function DataTransfer() {
+	const { user } = useAuth();
+
+	const handleExport = async () => {
+		const result = await exportAllDataFromSupabase();
+		if (!result.success) {
+			alert('Error exporting data: ' + result.error);
+		}
+	};
+
+	const handleImport = async () => {
+		if (!user?.id) {
+			alert('You must be logged in to import data');
+			return;
+		}
+		await importAllDataToSupabase(user.id);
+	};
+
 	return (
 		<div className={styles.dataTransfer}>
 			<div className={styles.placeholderWrapper}>
@@ -23,7 +42,7 @@ function DataTransfer() {
 					desc="Save a backup of your habits data to your device."
 					textOnButton="Export Now"
 					buttonIcon={<BsDatabaseFillUp />}
-					onClick={exportAllData}
+					onClick={handleExport}
 					accentColor="#57a639"
 				/>
 			</div>
@@ -32,10 +51,10 @@ function DataTransfer() {
 				<Placeholder
 					image={<Import />}
 					title="Import"
-					desc="Upload your habits data from a backup file."
+					desc="Upload your habits data from a backup file and sync to Supabase."
 					textOnButton="Import Now"
 					buttonIcon={<BsDatabaseFillDown />}
-					onClick={importAllData}
+					onClick={handleImport}
 				/>
 			</div>
 		</div>

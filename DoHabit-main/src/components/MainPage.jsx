@@ -1,5 +1,8 @@
 import styles from '../css/MainPage.module.css';
 
+// react
+import { useEffect } from 'react';
+
 // framer
 import { motion } from 'framer-motion';
 
@@ -11,11 +14,15 @@ import Placeholder from './Placeholder';
 // icons
 import { ReactComponent as Calendar } from '../img/calendar.svg';
 import { MdAddToPhotos } from 'react-icons/md';
-import { useHabitsStore } from '../stores/habitsStore';
 
-// import login functions
-import { useState } from "react";
-import { sendOtp, verifyOtp, setPassword } from "../auth/api";
+// stores
+import { useHabitsStore } from '../stores/habitsStore';
+import { useSettingsStore } from '../stores/settingsStore';
+import { useAchievementsStore } from '../stores/achievementsStore';
+import { useMainDiaryStore } from '../stores/mainDiaryStore';
+
+// auth
+import { useAuth } from '../contexts/AuthContext';
 
 const mainVariants = {
   initial: { opacity: 0 },
@@ -25,87 +32,40 @@ const mainVariants = {
 };
 
 function MainPage() {
-
+  const { user } = useAuth();
+  
   const habits = useHabitsStore((s) => s.habits);
+  const loadHabits = useHabitsStore((s) => s.loadHabits);
+  const setUserId = useHabitsStore((s) => s.setUserId);
+  
+  const loadSettings = useSettingsStore((s) => s.loadSettings);
+  const setSettingsUserId = useSettingsStore((s) => s.setUserId);
+  
+  const loadAchievements = useAchievementsStore((s) => s.loadAchievements);
+  const setAchievementsUserId = useAchievementsStore((s) => s.setUserId);
+  
+  const loadDiary = useMainDiaryStore((s) => s.loadDiary);
+  const setDiaryUserId = useMainDiaryStore((s) => s.setUserId);
+  
   const filteredHabits = habits.filter((h) => !h.isArchived);
 
-  // LOGIN STATES
-  const [step, setStep] = useState("email"); // email → otp → password → done
-  const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
-  const [password, setPasswordText] = useState("");
-
-  const handleSendOtp = async () => {
-    const res = await sendOtp(email);
-    if (res.success) {
-      setStep("otp");
+  // Load data from Supabase when user is authenticated
+  useEffect(() => {
+    if (user?.id) {
+      // Set user IDs in all stores
+      setUserId(user.id);
+      setSettingsUserId(user.id);
+      setAchievementsUserId(user.id);
+      setDiaryUserId(user.id);
+      
+      // Load data from Supabase
+      loadHabits(user.id);
+      loadSettings(user.id);
+      loadAchievements(user.id);
+      loadDiary(user.id);
     }
-  };
+  }, [user, loadHabits, loadSettings, loadAchievements, loadDiary, setUserId, setSettingsUserId, setAchievementsUserId, setDiaryUserId]);
 
-  const handleVerifyOtp = async () => {
-    const res = await verifyOtp(otp);
-    if (res.success) {
-      setStep("password");
-    } else {
-      alert("Incorrect OTP");
-    }
-  };
-
-  const handleSetPassword = async () => {
-    await setPassword(password);
-    localStorage.setItem("isLoggedIn", "true");
-    setStep("done");
-  };
-
-  // IF USER NOT LOGGED IN → SHOW LOGIN UI
-  if (!localStorage.getItem("isLoggedIn")) {
-    return (
-      <div className="auth-box">
-
-        {step === "email" && (
-          <>
-            <h2>Login</h2>
-            <input 
-              type="email" 
-              placeholder="Enter Email" 
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
-            />
-            <button onClick={handleSendOtp}>Send OTP</button>
-          </>
-        )}
-
-        {step === "otp" && (
-          <>
-            <h2>Enter OTP</h2>
-            <input 
-              type="text" 
-              placeholder="Enter OTP"
-              value={otp}
-              onChange={(e)=>setOtp(e.target.value)}
-            />
-            <button onClick={handleVerifyOtp}>Verify</button>
-          </>
-        )}
-
-        {step === "password" && (
-          <>
-            <h2>Create Password</h2>
-            <input 
-              type="password" 
-              placeholder="Set Password"
-              value={password}
-              onChange={(e)=>setPasswordText(e.target.value)}
-            />
-            <button onClick={handleSetPassword}>Save Password</button>
-          </>
-        )}
-
-      </div>
-    );
-  }
-
-  // IF LOGGED IN → SHOW HABIT DASHBOARD
   return (
     <motion.div className={styles.mainPage} {...mainVariants}>
       <Header />

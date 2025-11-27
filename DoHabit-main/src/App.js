@@ -13,17 +13,20 @@ import { useDialogStore } from './stores/dialogStore';
 import MainPage from './components/MainPage';
 import Modal from './components/Modal';
 import Dialog from './components/Containment/Dialog';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // hooks
 import useColorScheme from './hooks/useColorScheme';
 import useAchievementsCheck from './hooks/useAchievementsCheck';
+
 // db
 import dbModalRoutes from './db/dbModalRoutes';
 
-// chat gpt
+// auth
+import { AuthProvider } from './contexts/AuthContext';
 import Login from "./auth/Login";
-import Otp from "./auth/Otp";
-import SetPassword from "./auth/SetPassword";
+import ForgotPassword from "./auth/Otp";
+import ResetPassword from "./auth/SetPassword";
 
 
 const PUBLIC_URL = process.env.PUBLIC_URL;
@@ -40,41 +43,51 @@ function App() {
 	useAchievementsCheck();
 
 	return (
-		<main className="App">
-			<AnimatePresence initial={false}>
-				<Routes location={location} key={location.pathname}>
-					{/* AUTH ROUTES */}
-  <Route path="/login" element={<Login />} />
-  <Route path="/otp" element={<Otp />} />
-  <Route path="/set-password" element={<SetPassword />} />
+		<AuthProvider>
+			<main className="App">
+				<AnimatePresence initial={false}>
+					<Routes location={location} key={location.pathname}>
+						{/* AUTH ROUTES */}
+						<Route path="/login" element={<Login />} />
+						<Route path="/forgot-password" element={<ForgotPassword />} />
+						<Route path="/reset-password" element={<ResetPassword />} />
 
-					<Route
-						path='*'
-						element={<Navigate to={PUBLIC_URL} />}
-					/>
+						<Route
+							path='*'
+							element={<Navigate to={PUBLIC_URL} />}
+						/>
 
-					<Route
-						path={PUBLIC_URL}
-						element={<MainPage />}
-					/>
+						<Route
+							path={PUBLIC_URL}
+							element={
+								<ProtectedRoute>
+									<MainPage />
+								</ProtectedRoute>
+							}
+						/>
 
-					<Route
-						path={`${PUBLIC_URL}/modal`}
-						element={<Modal />}
-					>
-						{dbModalRoutes.map((r) => (
-							<Route key={r.path} path={r.path} element={r.element} />
-						))}
-					</Route>
-					
+						<Route
+							path={`${PUBLIC_URL}/modal`}
+							element={
+								<ProtectedRoute>
+									<Modal />
+								</ProtectedRoute>
+							}
+						>
+							{dbModalRoutes.map((r) => (
+								<Route key={r.path} path={r.path} element={r.element} />
+							))}
+						</Route>
+						
 
-				</Routes>
+					</Routes>
 
-				{isDialogVisible && (
-					<Dialog key="dialog" />
-				)}
-			</AnimatePresence>
-		</main>
+					{isDialogVisible && (
+						<Dialog key="dialog" />
+					)}
+				</AnimatePresence>
+			</main>
+		</AuthProvider>
 	);
 }
 
