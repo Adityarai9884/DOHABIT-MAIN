@@ -52,17 +52,15 @@ function Menu() {
 				/>
 			</MenuItemList>
 
-			<MenuItemList title="Other">
-				<MenuItem
-					icon={<FaGithub />}
-					iconColor="#7fc7ff"
-					title="GitHub Repository"
-					desc="View or contribute to the project"
-					onClick={() => window.open('https://github.com/iNikAnn/DoHabit', '_blank')}
-					link
-				/>
-
-				<MenuItem
+		<MenuItemList title="Other">
+			<MenuItem
+				icon={<FaGithub />}
+				iconColor="#7fc7ff"
+				title="GitHub Repository"
+				desc="View or contribute to the project"
+				onClick={() => window.open('https://github.com/Adityarai9884', '_blank')}
+				link
+			/>				<MenuItem
 					icon={<IoIosMail />}
 					iconColor="#ffb841"
 					title="Send Feedback"

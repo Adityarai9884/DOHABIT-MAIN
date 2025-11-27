@@ -12,6 +12,7 @@
   padding: 0;
 }
 
+
 .themeToggle:hover {
   background: var(--bg-color-secondary);
   transform: scale(1.1) !important;
