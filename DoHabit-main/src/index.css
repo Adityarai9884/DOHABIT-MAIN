@@ -24,6 +24,31 @@
 	--border-radius-tertiary: 0.4rem;
 
 	--input-height-primary: 3rem;
+
+	--color-text: light-dark(rgb(4, 4, 4), hsl(0, 0%, 90%));
+	--color-border: light-dark(hsl(0, 0%, 80%), hsl(0, 0%, 20%));
+}
+
+/* Light theme forced */
+[data-theme="light"] {
+	color-scheme: light;
+	--bg: hsl(0, 0%, 95%);
+	--bg-color-primary: hsl(0, 0%, 100%);
+	--bg-color-secondary: hsl(0, 0%, 90%);
+	--bg-color-tertiary: hsl(0, 0%, 80%);
+	--color-text: rgb(4, 4, 4);
+	--color-border: hsl(0, 0%, 80%);
+}
+
+/* Dark theme forced */
+[data-theme="dark"] {
+	color-scheme: dark;
+	--bg: black;
+	--bg-color-primary: hsl(0, 0%, 8%);
+	--bg-color-secondary: hsl(0, 0%, 12%);
+	--bg-color-tertiary: hsl(0, 0%, 20%);
+	--color-text: hsl(0, 0%, 90%);
+	--color-border: hsl(0, 0%, 20%);
 }
 
 body {
@@ -42,7 +67,7 @@ code {
 html {
 	color-scheme: light dark;
 	background-color: var(--bg);
-	color: light-dark(rgb(4, 4, 4), hsl(0, 0%, 90%));
+	color: var(--color-text);
 	user-select: none;
 }
 
@@ -73,20 +98,22 @@ li {
   width: 350px;
   margin: 100px auto;
   padding: 30px;
-  background: #111;
+  background: var(--bg-color-primary);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  color: white;
+  color: var(--color-text);
   text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .auth-box input {
   width: 100%;
   padding: 12px;
   margin-top: 15px;
-  background: #222;
-  border: none;
+  background: var(--bg-color-secondary);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  color: white;
+  color: var(--color-text);
 }
 
 .auth-box button {
@@ -99,6 +126,16 @@ li {
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.auth-box button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-box p {
+  margin: 10px 0;
+  font-size: 14px;
 }
 /* Universal hover for ALL buttons and clickable elements */
 button,

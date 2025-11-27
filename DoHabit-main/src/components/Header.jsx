@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // components
 import IconButton from './Actions/IconButton';
 import ProfileIcon from './Profile/ProfileIcon';
+import ThemeToggle from './Actions/ThemeToggle';
 
 // auth
 import { useAuth } from '../contexts/AuthContext';
@@ -50,6 +51,9 @@ function Header() {
 			<nav>
 				<ul className={styles.navList}>
 					{navItems}
+					<li>
+						<ThemeToggle />
+					</li>
 					<li>
 						<ProfileIcon />
 					</li>

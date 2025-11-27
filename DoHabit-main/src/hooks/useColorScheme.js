@@ -6,9 +6,19 @@ function useColorScheme() {
 
 	useLayoutEffect(
 		() => {
-			document.documentElement.style.colorScheme = settings.isDarkSchemeForced
-				? 'dark'
-				: 'light dark';
+			const theme = settings.theme || 'auto';
+			
+			if (theme === 'light') {
+				document.documentElement.style.colorScheme = 'light';
+				document.documentElement.setAttribute('data-theme', 'light');
+			} else if (theme === 'dark') {
+				document.documentElement.style.colorScheme = 'dark';
+				document.documentElement.setAttribute('data-theme', 'dark');
+			} else {
+				// Auto mode - follow system preference
+				document.documentElement.style.colorScheme = 'light dark';
+				document.documentElement.removeAttribute('data-theme');
+			}
 		},
 		[settings]
 	);

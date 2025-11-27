@@ -13,24 +13,38 @@ function AppearanceSettings() {
 	const settings = useSettingsStore((s) => s.settings);
 	const settingsDispatch = useSettingsStore((s) => s.settingsDispatch);
 
+	const currentTheme = settings.theme || 'auto';
+	const themeLabels = {
+		light: 'Light',
+		dark: 'Dark',
+		auto: 'Auto (System)'
+	};
+
+	const handleThemeChange = () => {
+		const themes = ['light', 'dark', 'auto'];
+		const currentIndex = themes.indexOf(currentTheme);
+		const nextTheme = themes[(currentIndex + 1) % themes.length];
+		settingsDispatch({ theme: nextTheme });
+	};
+
 	return (
 		<section className={styles.appearance}>
 			<MenuItemList title="Color Theme">
 				<MenuItem
-					title="Force Dark Mode"
-					desc={`Current: ${settings.isDarkSchemeForced ? 'Dark' : 'System'}`}
+					title="Theme"
+					desc={`Current: ${themeLabels[currentTheme]}`}
 					other={
-						<Switch
-							isActive={settings.isDarkSchemeForced}
-							onClick={() => settingsDispatch({
-								isDarkSchemeForced: !settings.isDarkSchemeForced
-							})}
-						/>
+						<button
+							className={styles.themeToggleBtn}
+							onClick={handleThemeChange}
+						>
+							{currentTheme === 'light' && '☀️'}
+							{currentTheme === 'dark' && '🌙'}
+							{currentTheme === 'auto' && '🔄'}
+						</button>
 					}
 				/>
-			</MenuItemList>
-
-			<MenuItemList title="Calendar">
+			</MenuItemList>			<MenuItemList title="Calendar">
 				<MenuItem
 					title="Compact Calendar View"
 					desc={`Current: ${settings.calendarView === 'compact' ? 'Compact' : 'Default'}`}
