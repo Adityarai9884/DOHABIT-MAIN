@@ -5,14 +5,9 @@ import packageJson from '../../../package.json';
 import MenuItemList from './MenuItemList';
 import MenuItem from './MenuItem';
 
-// utils
-import clearLocalStorage from '../../utils/clearLocalStorage';
-
 // icons
 import { BsFillDatabaseFill } from "react-icons/bs";
 import { FaGithub, FaPaintBrush, FaBrain } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
-import { ImFire } from "react-icons/im";
 import { HiArchiveBox } from "react-icons/hi2";
 
 const PUBLIC_URL = process.env.PUBLIC_URL;
@@ -70,27 +65,7 @@ function Menu() {
 				desc="View or contribute to the project"
 				onClick={() => window.open('https://github.com/Adityarai9884', '_blank')}
 				link
-			/>				<MenuItem
-					icon={<IoIosMail />}
-					iconColor="#ffb841"
-					title="Send Feedback"
-					desc="Share your thoughts or report an issue"
-					onClick={() => window.location.href = 'mailto:ilowen@ya.ru?subject=Feedback%20on%20DoHabit'}
-					link
-				/>
-			</MenuItemList>
-
-			<MenuItemList
-				title="Danger Zone"
-				titleStyle={{ color: 'IndianRed' }}
-				listStyle={{ border: '1px solid IndianRed' }}
-			>
-				<MenuItem
-					icon={<ImFire style={{ color: 'IndianRed' }} />}
-					title="Clear Data"
-					desc="Delete all application data"
-					onClick={() => clearLocalStorage(PUBLIC_URL)}
-				/>
+			/>
 			</MenuItemList>
 
 			<div className={`${styles.category} ${styles.footer}`}>

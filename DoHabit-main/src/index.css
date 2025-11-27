@@ -14,10 +14,10 @@
 
 	--accent-color: dodgerblue;
 
-	--bg: light-dark(hsl(0, 0%, 95%), black);
-	--bg-color-primary: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 8%));
-	--bg-color-secondary: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 12%));
-	--bg-color-tertiary: light-dark(hsl(0, 0%, 80%), hsl(0, 0%, 20%));
+	--bg: light-dark(hsl(40, 15%, 55%), black);
+	--bg-color-primary: light-dark(hsl(40, 18%, 60%), hsl(0, 0%, 8%));
+	--bg-color-secondary: light-dark(hsl(40, 15%, 52%), hsl(0, 0%, 12%));
+	--bg-color-tertiary: light-dark(hsl(40, 12%, 45%), hsl(0, 0%, 20%));
 
 	--border-radius-primary: 1rem;
 	--border-radius-secondary: 0.6rem;
@@ -25,19 +25,19 @@
 
 	--input-height-primary: 3rem;
 
-	--color-text: light-dark(rgb(4, 4, 4), hsl(0, 0%, 90%));
-	--color-border: light-dark(hsl(0, 0%, 80%), hsl(0, 0%, 20%));
+	--color-text: light-dark(rgb(10, 10, 10), hsl(0, 0%, 90%));
+	--color-border: light-dark(hsl(40, 10%, 40%), hsl(0, 0%, 20%));
 }
 
 /* Light theme forced */
 [data-theme="light"] {
 	color-scheme: light;
-	--bg: hsl(0, 0%, 95%);
-	--bg-color-primary: hsl(0, 0%, 100%);
-	--bg-color-secondary: hsl(0, 0%, 90%);
-	--bg-color-tertiary: hsl(0, 0%, 80%);
-	--color-text: rgb(4, 4, 4);
-	--color-border: hsl(0, 0%, 80%);
+	--bg: hsl(40, 15%, 55%);
+	--bg-color-primary: hsl(40, 18%, 60%);
+	--bg-color-secondary: hsl(40, 15%, 52%);
+	--bg-color-tertiary: hsl(40, 12%, 45%);
+	--color-text: rgb(10, 10, 10);
+	--color-border: hsl(40, 10%, 40%);
 }
 
 /* Dark theme forced */
