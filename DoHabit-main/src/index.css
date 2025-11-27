@@ -1,0 +1,141 @@
+::-webkit-scrollbar {
+	display: none;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+:root {
+	--app-width: 760px;
+	--header-height: 4rem;
+
+	--accent-color: dodgerblue;
+
+	--bg: light-dark(hsl(0, 0%, 95%), black);
+	--bg-color-primary: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 8%));
+	--bg-color-secondary: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 12%));
+	--bg-color-tertiary: light-dark(hsl(0, 0%, 80%), hsl(0, 0%, 20%));
+
+	--border-radius-primary: 1rem;
+	--border-radius-secondary: 0.6rem;
+	--border-radius-tertiary: 0.4rem;
+
+	--input-height-primary: 3rem;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overscroll-behavior: none;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+html {
+	color-scheme: light dark;
+	background-color: var(--bg);
+	color: light-dark(rgb(4, 4, 4), hsl(0, 0%, 90%));
+	user-select: none;
+}
+
+a {
+	color: unset;
+	text-decoration: none;
+}
+
+button {
+	border: none;
+	color: inherit;
+}
+
+input {
+	border: none;
+	background-color: var(--bg-color-primary);
+	border-radius: var(--border-radius-secondary);
+}
+
+li {
+	list-style: none;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+.auth-box {
+  width: 350px;
+  margin: 100px auto;
+  padding: 30px;
+  background: #111;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #222;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.auth-box button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #7a5cff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+/* Universal hover for ALL buttons and clickable elements */
+button,
+.iconBtn,
+li,
+a,
+[role="button"],
+.clickable,
+svg,
+div[onClick] {
+    transition: transform 0.15s ease, background-color 0.15s ease;
+    cursor: pointer;
+}
+
+/* Hover effect */
+button:hover,
+.iconBtn:hover,
+li:hover,
+a:hover,
+[role="button"]:hover,
+.clickable:hover,
+svg:hover,
+div[onClick]:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Click effect */
+button:active,
+.iconBtn:active,
+li:active,
+a:active,
+[role="button"]:active,
+.clickable:active,
+svg:active,
+div[onClick]:active {
+    transform: scale(0.9);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
