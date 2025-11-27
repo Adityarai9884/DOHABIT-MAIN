@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // components
 import IconButton from './Actions/IconButton';
+import ProfileIcon from './Profile/ProfileIcon';
 
 // auth
 import { useAuth } from '../contexts/AuthContext';
@@ -16,7 +17,7 @@ import { MdLibraryBooks } from 'react-icons/md';
 const publicUrl = process.env.PUBLIC_URL;
 
 function Header() {
-	const { signOut, user } = useAuth();
+	const { signOut } = useAuth();
 	const navigate = useNavigate();
 
 	const handleLogout = async () => {
@@ -44,12 +45,14 @@ function Header() {
 			<div className={styles.logoWrapper}>
 				<span className={styles.logo} />
 				<h1>DoHabit</h1>
-				{user && <span style={{ fontSize: '0.8rem', marginLeft: '10px', opacity: 0.7 }}>({user.email})</span>}
 			</div>
 
 			<nav>
 				<ul className={styles.navList}>
 					{navItems}
+					<li>
+						<ProfileIcon />
+					</li>
 					<li>
 						<IconButton 
 							icon={<FaSignOutAlt />} 

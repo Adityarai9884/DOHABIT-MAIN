@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,11 +25,16 @@ export default function Login() {
       return;
     }
 
+    if (isSignUp && !name) {
+      setError("Please enter your name");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
     const res = isSignUp 
-      ? await signUp(email, password)
+      ? await signUp(email, password, name)
       : await signIn(email, password);
 
     setLoading(false);
@@ -48,6 +54,14 @@ export default function Login() {
     <div className="auth-box">
       <h2>{isSignUp ? "Sign Up" : "Login"}</h2>
       {error && <p style={{ color: error.includes("successful") ? "green" : "red" }}>{error}</p>}
+      {isSignUp && (
+        <input
+          type="text"
+          placeholder="Enter Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      )}
       <input
         type="email"
         placeholder="Enter Email"
@@ -67,6 +81,7 @@ export default function Login() {
         onClick={() => {
           setIsSignUp(!isSignUp);
           setError("");
+          setName("");
         }}
         style={{ marginTop: "10px" }}
       >

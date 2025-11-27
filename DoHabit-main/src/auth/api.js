@@ -1,13 +1,18 @@
 import { supabase } from '../utils/supabase';
 
 /**
- * Sign up a new user with email and password
+ * Sign up a new user with email, password, and name
  */
-export async function signUp(email, password) {
+export async function signUp(email, password, name) {
   try {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          name: name || email.split('@')[0],
+        }
+      }
     });
     
     if (error) throw error;
@@ -103,5 +108,23 @@ export async function getCurrentUser() {
   } catch (error) {
     console.error('Get current user error:', error);
     return { success: false, user: null, error: error.message };
+  }
+}
+
+/**
+ * Update user profile metadata
+ */
+export async function updateUserProfile(updates) {
+  try {
+    const { data, error } = await supabase.auth.updateUser({
+      data: updates
+    });
+    
+    if (error) throw error;
+    
+    return { success: true, data, error: null };
+  } catch (error) {
+    console.error('Update user profile error:', error);
+    return { success: false, data: null, error: error.message };
   }
 }

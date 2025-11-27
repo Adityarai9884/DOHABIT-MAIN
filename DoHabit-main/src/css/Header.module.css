@@ -42,6 +42,11 @@
 	gap: 1rem;
 }
 
+.navList li {
+	display: flex;
+	align-items: center;
+}
+
 @media screen and (min-width: 576px) {
 	.header {
 		/* outline: 1px solid tomato; */

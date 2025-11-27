@@ -1,0 +1,96 @@
+.profileContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.profileIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+.profileIcon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profileTooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 200px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltipName {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.tooltipEmail {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .profileTooltip {
+    background: var(--color-primary-dark);
+    border-color: var(--color-border-dark);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profileIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .profileTooltip {
+    min-width: 180px;
+    padding: 10px 14px;
+  }
+
+  .tooltipName {
+    font-size: 14px;
+  }
+
+  .tooltipEmail {
+    font-size: 12px;
+  }
+}
