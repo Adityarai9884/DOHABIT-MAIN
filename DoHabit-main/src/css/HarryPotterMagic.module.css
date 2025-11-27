@@ -1,0 +1,232 @@
+.harry-potter-theme {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: -1;
+	overflow: hidden;
+}
+
+/* Marauder's Map background */
+.marauders-map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: 
+		repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 50px,
+			rgba(139, 90, 43, 0.03) 50px,
+			rgba(139, 90, 43, 0.03) 51px
+		),
+		repeating-linear-gradient(
+			90deg,
+			transparent,
+			transparent 50px,
+			rgba(139, 90, 43, 0.03) 50px,
+			rgba(139, 90, 43, 0.03) 51px
+		);
+	opacity: 0.4;
+	animation: mapReveal 20s ease-in-out infinite;
+}
+
+@keyframes mapReveal {
+	0%, 100% { opacity: 0.3; }
+	50% { opacity: 0.6; }
+}
+
+/* Golden Snitch */
+.golden-snitch {
+	position: absolute;
+	font-size: 40px;
+	top: 20%;
+	right: 10%;
+	animation: goldenSnitchFly 15s ease-in-out infinite;
+	filter: drop-shadow(0 0 10px gold) drop-shadow(0 0 20px gold);
+}
+
+@keyframes goldenSnitchFly {
+	0% { 
+		transform: translate(0, 0) rotate(0deg);
+	}
+	25% { 
+		transform: translate(-200px, -100px) rotate(180deg);
+	}
+	50% { 
+		transform: translate(-100px, 200px) rotate(360deg);
+	}
+	75% { 
+		transform: translate(150px, -50px) rotate(540deg);
+	}
+	100% { 
+		transform: translate(0, 0) rotate(720deg);
+	}
+}
+
+/* Wands */
+.wand {
+	position: absolute;
+	font-size: 50px;
+	animation: wandSwish 6s ease-in-out infinite;
+	filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.6));
+}
+
+.wand-1 {
+	top: 10%;
+	left: 15%;
+	animation-delay: 0s;
+}
+
+.wand-2 {
+	bottom: 15%;
+	right: 20%;
+	animation-delay: 3s;
+}
+
+@keyframes wandSwish {
+	0%, 100% { 
+		transform: rotate(-15deg) translateY(0);
+	}
+	25% { 
+		transform: rotate(15deg) translateY(-30px);
+	}
+	50% { 
+		transform: rotate(-10deg) translateY(-60px);
+	}
+	75% { 
+		transform: rotate(10deg) translateY(-30px);
+	}
+}
+
+/* Hogwarts Castle */
+.hogwarts-castle {
+	position: absolute;
+	font-size: 80px;
+	bottom: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 0.15;
+	filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.3));
+	animation: castleGlow 8s ease-in-out infinite;
+}
+
+@keyframes castleGlow {
+	0%, 100% { 
+		opacity: 0.15;
+		filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.3));
+	}
+	50% { 
+		opacity: 0.25;
+		filter: drop-shadow(0 0 40px rgba(138, 43, 226, 0.5));
+	}
+}
+
+/* Hedwig */
+.hedwig {
+	position: absolute;
+	font-size: 35px;
+	top: 15%;
+	animation: hedwigFly 25s linear infinite;
+	filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes hedwigFly {
+	0% {
+		left: -50px;
+		top: 15%;
+	}
+	25% {
+		top: 40%;
+	}
+	50% {
+		left: 50%;
+		top: 25%;
+	}
+	75% {
+		top: 50%;
+	}
+	100% {
+		left: 110%;
+		top: 15%;
+	}
+}
+
+/* Magical Spell Effects */
+.spell-effect {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	animation: spellCast 8s ease-in-out infinite;
+}
+
+.spell-1 {
+	top: 20%;
+	left: 30%;
+	background: radial-gradient(circle, rgba(138, 43, 226, 0.2) 0%, transparent 70%);
+	animation-delay: 0s;
+}
+
+.spell-2 {
+	top: 60%;
+	right: 25%;
+	background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+	animation-delay: 2.5s;
+}
+
+.spell-3 {
+	bottom: 30%;
+	left: 15%;
+	background: radial-gradient(circle, rgba(220, 20, 60, 0.2) 0%, transparent 70%);
+	animation-delay: 5s;
+}
+
+@keyframes spellCast {
+	0%, 100% { 
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	50% { 
+		transform: scale(1.5);
+		opacity: 0.6;
+	}
+}
+
+/* Magical Particles */
+.magical-particle {
+	position: fixed;
+	bottom: -50px;
+	animation: floatMagicalUp 20s linear forwards;
+	pointer-events: none;
+	z-index: -1;
+	text-shadow: 0 0 10px currentColor;
+}
+
+@keyframes floatMagicalUp {
+	0% { 
+		transform: translateY(0) translateX(0) rotate(0deg);
+		opacity: 0;
+	}
+	10% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { 
+		transform: translateY(-120vh) translateX(var(--drift, 100px)) rotate(720deg);
+		opacity: 0;
+	}
+}
+
+/* Lightning bolt effect (Harry's scar) */
+@keyframes lightning {
+	0%, 100% { opacity: 0; }
+	50% { opacity: 0.8; }
+}
+
+/* Add magical cursor trail effect */
+body {
+	cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="15" font-size="15">✨</text></svg>'), auto;
+}

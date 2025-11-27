@@ -1,0 +1,385 @@
+.loginContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2c1810 0%, #4a3728 50%, #2c1810 100%);
+  overflow: hidden;
+}
+
+/* Marauder's Map Background */
+.maraudersMapBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://i.pinimg.com/originals/f6/3a/99/f63a99e8af9e695f5a39127b2a095a09.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  filter: sepia(0.4) brightness(0.8);
+  animation: mapPulse 10s ease-in-out infinite;
+}
+
+@keyframes mapPulse {
+  0%, 100% { 
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.35;
+    transform: scale(1.02);
+  }
+}
+
+/* Magical Particles */
+.magicParticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUpParticle 15s linear infinite;
+  opacity: 0;
+  text-shadow: 0 0 10px currentColor;
+}
+
+@keyframes floatUpParticle {
+  0% { 
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { 
+    transform: translateY(-100vh) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Hogwarts Houses */
+.houseBanner {
+  position: absolute;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  border: 2px solid;
+  pointer-events: none;
+  animation: bannerFloat 6s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  min-width: 120px;
+}
+
+.gryffindor {
+  top: 10%;
+  left: 8%;
+  background: linear-gradient(135deg, #740001 0%, #ae0001 100%);
+  border-color: #d3a625;
+  color: #d3a625;
+  animation-delay: 0s;
+}
+
+.hufflepuff {
+  top: 12%;
+  right: 8%;
+  background: linear-gradient(135deg, #ecb939 0%, #f0c75e 100%);
+  border-color: #000000;
+  color: #000000;
+  animation-delay: 1.5s;
+}
+
+.ravenclaw {
+  bottom: 15%;
+  left: 10%;
+  background: linear-gradient(135deg, #0e1a40 0%, #222f5b 100%);
+  border-color: #946b2d;
+  color: #946b2d;
+  animation-delay: 3s;
+}
+
+.slytherin {
+  bottom: 18%;
+  right: 12%;
+  background: linear-gradient(135deg, #1a472a 0%, #2a623d 100%);
+  border-color: #aaaaaa;
+  color: #aaaaaa;
+  animation-delay: 4.5s;
+}
+
+@keyframes bannerFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+.houseCrest {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+/* Floating magical elements */
+.goldenSnitch {
+  position: absolute;
+  font-size: 40px;
+  top: 20%;
+  left: 50%;
+  animation: snitchFloat 12s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px gold);
+  pointer-events: none;
+}
+
+@keyframes snitchFloat {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-150px, -80px) rotate(90deg); }
+  50% { transform: translate(-80px, 120px) rotate(180deg); }
+  75% { transform: translate(100px, -60px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+.wand {
+  position: absolute;
+  font-size: 45px;
+  animation: wandFloat 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.8));
+  pointer-events: none;
+}
+
+.wand1 {
+  top: 35%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.wand2 {
+  bottom: 35%;
+  right: 6%;
+  animation-delay: 4s;
+}
+
+/* Sorting Hat */
+.sortingHat {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 50px;
+  animation: hatWiggle 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(139, 90, 43, 0.8));
+  pointer-events: none;
+}
+
+@keyframes hatWiggle {
+  0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+  50% { transform: translateX(-50%) rotate(5deg); }
+}
+
+/* Floating House Crests */
+.floatingCrest {
+  position: absolute;
+  font-size: 35px;
+  pointer-events: none;
+  animation: crestFloat 8s ease-in-out infinite;
+}
+
+.crest1 {
+  top: 25%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.crest2 {
+  top: 30%;
+  right: 18%;
+  animation-delay: 2s;
+}
+
+.crest3 {
+  bottom: 30%;
+  left: 12%;
+  animation-delay: 4s;
+}
+
+.crest4 {
+  bottom: 25%;
+  right: 15%;
+  animation-delay: 6s;
+}
+
+@keyframes crestFloat {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes wandFloat {
+  0%, 100% { transform: rotate(-10deg) translateY(0); }
+  50% { transform: rotate(10deg) translateY(-40px); }
+}
+
+/* Auth Box Styling */
+.authBox {
+  position: relative;
+  z-index: 10;
+  width: 400px;
+  padding: 40px;
+  background: rgba(60, 45, 35, 0.95);
+  border: 2px solid rgba(139, 90, 43, 0.6);
+  border-radius: 15px;
+  box-shadow: 
+    0 0 30px rgba(138, 43, 226, 0.4),
+    0 0 60px rgba(255, 215, 0, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  animation: boxGlow 6s ease-in-out infinite;
+}
+
+@keyframes boxGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 30px rgba(138, 43, 226, 0.4),
+      0 0 60px rgba(255, 215, 0, 0.2),
+      inset 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 0 40px rgba(138, 43, 226, 0.6),
+      0 0 80px rgba(255, 215, 0, 0.3),
+      inset 0 0 25px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.authBox h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #f5d98f;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.authBox input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  background: rgba(30, 20, 15, 0.7);
+  border: 1px solid rgba(139, 90, 43, 0.5);
+  border-radius: 8px;
+  color: #f5d98f;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.authBox input::placeholder {
+  color: rgba(245, 217, 143, 0.5);
+}
+
+.authBox input:focus {
+  outline: none;
+  border-color: rgba(138, 43, 226, 0.8);
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+  background: rgba(30, 20, 15, 0.9);
+}
+
+.authBox button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #7a5cff 0%, #a855f7 100%);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+}
+
+.authBox button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6);
+  background: linear-gradient(135deg, #8b6cff 0%, #b865ff 100%);
+}
+
+.authBox button:active {
+  transform: translateY(0);
+}
+
+.authBox button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.errorText {
+  margin: 15px 0 5px 0;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.errorRed {
+  color: #ff6b6b;
+}
+
+.errorGreen {
+  color: #51cf66;
+}
+
+/* Spell casting effects around the box */
+.spellGlow {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.spellGlow1 {
+  top: -50px;
+  left: -50px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
+  animation: spellPulse 4s ease-in-out infinite;
+}
+
+.spellGlow2 {
+  bottom: -50px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  animation: spellPulse 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+@keyframes spellPulse {
+  0%, 100% { 
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+}

@@ -28,6 +28,8 @@ import Login from "./auth/Login";
 import ForgotPassword from "./auth/Otp";
 import ResetPassword from "./auth/SetPassword";
 
+// Harry Potter Magic
+import HarryPotterMagic from './components/HarryPotterMagic';
 
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
@@ -45,17 +47,13 @@ function App() {
 	return (
 		<AuthProvider>
 			<main className="App">
+				<HarryPotterMagic />
 				<AnimatePresence initial={false}>
 					<Routes location={location} key={location.pathname}>
 						{/* AUTH ROUTES */}
 						<Route path="/login" element={<Login />} />
 						<Route path="/forgot-password" element={<ForgotPassword />} />
 						<Route path="/reset-password" element={<ResetPassword />} />
-
-						<Route
-							path='*'
-							element={<Navigate to={PUBLIC_URL} />}
-						/>
 
 						<Route
 							path={PUBLIC_URL}
@@ -78,7 +76,12 @@ function App() {
 								<Route key={r.path} path={r.path} element={r.element} />
 							))}
 						</Route>
-						
+
+						{/* Redirect root to PUBLIC_URL or login */}
+						<Route path="/" element={<Navigate to={PUBLIC_URL} replace />} />
+
+						{/* Catch all - redirect to PUBLIC_URL */}
+						<Route path='*' element={<Navigate to={PUBLIC_URL} replace />} />
 
 					</Routes>
 
