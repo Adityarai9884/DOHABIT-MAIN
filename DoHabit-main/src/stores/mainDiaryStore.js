@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import initMainDiary from "../utils/initMainDiary";
-import mainDiaryReducer from "../utils/mainDiaryReducer";
+import mainDiaryReducerSupabase from "../utils/mainDiaryReducerSupabase";
 import { fetchDiary } from '../services/diaryService';
 
 export const useMainDiaryStore = create(
@@ -32,7 +32,7 @@ export const useMainDiaryStore = create(
 		setDiary: (mainDiary) => set({ mainDiary }),
 
 		mainDiaryDispatch: (actions) => set(
-			(s) => ({ mainDiary: mainDiaryReducer(s.mainDiary, actions) })
+			(s) => ({ mainDiary: mainDiaryReducerSupabase(s.mainDiary, actions, s.userId) })
 		)
 	})
 );
