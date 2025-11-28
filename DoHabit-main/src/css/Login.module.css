@@ -18,22 +18,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://i.pinimg.com/originals/f6/3a/99/f63a99e8af9e695f5a39127b2a095a09.jpg');
+  background-image: url('../../public/img/tuyen-vo-tS-jh0M6JoA-unsplash.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.3;
-  filter: sepia(0.4) brightness(0.8);
+  opacity: 0.5;
+  filter: sepia(0.2) brightness(0.7) contrast(1.1);
   animation: mapPulse 10s ease-in-out infinite;
 }
 
 @keyframes mapPulse {
   0%, 100% { 
-    opacity: 0.25;
+    opacity: 0.45;
     transform: scale(1);
   }
   50% { 
-    opacity: 0.35;
+    opacity: 0.55;
     transform: scale(1.02);
   }
 }
