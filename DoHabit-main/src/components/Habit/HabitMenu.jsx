@@ -64,14 +64,8 @@ function HabitMenu(props) {
 		});
 	};
 
+	// Removed "Complete Yesterday" button - cannot modify past dates
 	const buttons = [[
-		isYesterdayCompleted ? <FaCalendarTimes /> : <FaCalendarCheck />,
-		(isYesterdayCompleted ? 'Uncomp.' : 'Comp.') + ' Y\'day',
-		isYesterdayCompleted ? 'IndianRed' : darkenedColor,
-		null,
-		null,
-		() => handleCompleteYeserday()
-	], [
 		<MdEditSquare />,
 		'Edit Habit',
 		darkenedColor,

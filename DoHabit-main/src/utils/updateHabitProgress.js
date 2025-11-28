@@ -10,24 +10,24 @@ function updateHabitProgress(habits, title) {
 
 		if (habit.title === title) {
 			const isCompleted = checkHabitCompletion(habit.completedDays, habit.frequency, new Date());
+			
+			// Prevent changes if already 100% complete for today
+			if (isCompleted) {
+				return habit;
+			}
+			
 			let completedDays = [...habit.completedDays];
 
-			if (isCompleted) {
-				completedDays = completedDays.filter(
-					(day) => day.date !== today
-				);
-			} else {
-				const todayIndex = completedDays.findIndex(
-					(day) => day.date === today
-				);
+			const todayIndex = completedDays.findIndex(
+				(day) => day.date === today
+			);
 
-				todayIndex !== -1
-					? completedDays[todayIndex] = {
-						...completedDays[todayIndex],
-						progress: completedDays[todayIndex].progress + 1
-					}
-					: completedDays.unshift({ date: today, progress: 1, });
-			};
+			todayIndex !== -1
+				? completedDays[todayIndex] = {
+					...completedDays[todayIndex],
+					progress: completedDays[todayIndex].progress + 1
+				}
+				: completedDays.unshift({ date: today, progress: 1, });
 
 			habit = {
 				...habit,

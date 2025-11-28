@@ -1,10 +1,62 @@
 .aiInsights {
-	background: rgba(255, 255, 255, 0.05);
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	z-index: 1000;
+	transition: all 0.3s ease;
+}
+
+.aiInsights.collapsed {
+	background: rgba(167, 139, 250, 0.2);
+	border-radius: 50%;
+	padding: 0;
+	width: 3.5rem;
+	height: 3.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blur(10px);
+	border: 2px solid rgba(167, 139, 250, 0.5);
+	cursor: pointer;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.aiInsights.collapsed:hover {
+	background: rgba(167, 139, 250, 0.3);
+	transform: scale(1.05);
+	border-color: rgba(167, 139, 250, 0.7);
+}
+
+.collapsedIcon {
+	font-size: 1.8rem;
+	color: #a78bfa;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}
+
+.expandedContent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 350px;
+	max-width: 450px;
+	background: rgba(30, 30, 40, 0.98);
 	border-radius: 1rem;
 	padding: 1.5rem;
-	margin-bottom: 1.5rem;
 	backdrop-filter: blur(10px);
-	border: 1px solid rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(167, 139, 250, 0.3);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .header {
@@ -27,6 +79,12 @@
 	flex: 1;
 }
 
+.headerButtons {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
 .refreshButton {
 	background: rgba(255, 255, 255, 0.1);
 	border: none;
@@ -47,6 +105,30 @@
 
 .refreshButton:active {
 	transform: rotate(180deg) scale(0.95);
+}
+
+.closeButton {
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	color: #fff;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	font-size: 1.5rem;
+	line-height: 1;
+	transition: all 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.closeButton:hover {
+	background: rgba(239, 68, 68, 0.3);
+	color: #ef4444;
+}
+
+.closeButton:active {
+	transform: scale(0.95);
 }
 
 .setupMessage,
@@ -177,4 +259,23 @@
 	margin: 0;
 	font-size: 1rem;
 	color: #fff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+	.expandedContent {
+		min-width: 300px;
+		max-width: calc(100vw - 2rem);
+		max-height: calc(100vh - 6rem);
+		overflow-y: auto;
+	}
+
+	.aiInsights.collapsed {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.collapsedIcon {
+		font-size: 1.5rem;
+	}
 }

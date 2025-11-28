@@ -71,13 +71,12 @@ function MainPage() {
     <motion.div className={styles.mainPage} {...mainVariants}>
       <Header />
 
-      {filteredHabits.length > 0 && <AIInsights />}
+      <AIInsights />
 
       <HabitList habits={filteredHabits} />
 
       {filteredHabits.length === 0 && (
         <>
-          <AIInsights />
           <Placeholder
             image={<Calendar />}
             title="No active habits found"

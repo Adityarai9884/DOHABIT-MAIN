@@ -12,6 +12,7 @@ function AIInsights({ showWeeklySummary = false }) {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [lastUpdated, setLastUpdated] = useState(null);
+	const [isExpanded, setIsExpanded] = useState(false);
 
 	useEffect(() => {
 		const loadMotivation = async () => {
@@ -91,42 +92,85 @@ function AIInsights({ showWeeklySummary = false }) {
 	if (habits.length === 0) {
 		return (
 			<motion.div 
-				className={styles.aiInsights}
-				initial={{ opacity: 0, y: 20 }}
-				animate={{ opacity: 1, y: 0 }}
+				className={`${styles.aiInsights} ${styles.collapsed}`}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				onClick={() => setIsExpanded(!isExpanded)}
 			>
-				<div className={styles.header}>
-					<FaBrain className={styles.icon} />
-					<h3>AI Insights</h3>
+				<div className={styles.collapsedIcon}>
+					<FaBrain />
 				</div>
-				<p className={styles.emptyMessage}>
-					Create habits and mark them complete to get AI-powered insights! 🚀
-				</p>
+				<AnimatePresence>
+					{isExpanded && (
+						<motion.div 
+							className={styles.expandedContent}
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.8 }}
+							onClick={(e) => e.stopPropagation()}
+						>
+							<div className={styles.header}>
+								<FaBrain className={styles.icon} />
+								<h3>AI Insights</h3>
+							</div>
+							<p className={styles.emptyMessage}>
+								Create habits and mark them complete to get AI-powered insights! 🚀
+							</p>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</motion.div>
 		);
 	}
 
 	return (
 		<motion.div 
-			className={styles.aiInsights}
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
+			className={`${styles.aiInsights} ${!isExpanded ? styles.collapsed : ''}`}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
 		>
-			<div className={styles.header}>
-				<FaBrain className={styles.icon} />
-				<h3>AI Insights</h3>
-				{!loading && (
-					<button 
-						className={styles.refreshButton}
-						onClick={handleRefresh}
-						title="Refresh insights"
-					>
-						<FaRedo />
-					</button>
-				)}
-			</div>
+			{!isExpanded && (
+				<div 
+					className={styles.collapsedIcon}
+					onClick={() => setIsExpanded(true)}
+				>
+					<FaBrain />
+				</div>
+			)}
 
-			<AnimatePresence mode="wait">
+			<AnimatePresence>
+				{isExpanded && (
+					<motion.div 
+						className={styles.expandedContent}
+						initial={{ opacity: 0, scale: 0.8 }}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.8 }}
+						onClick={(e) => e.stopPropagation()}
+					>
+						<div className={styles.header}>
+							<FaBrain className={styles.icon} />
+							<h3>AI Insights</h3>
+							<div className={styles.headerButtons}>
+								{!loading && (
+									<button 
+										className={styles.refreshButton}
+										onClick={handleRefresh}
+										title="Refresh insights"
+									>
+										<FaRedo />
+									</button>
+								)}
+								<button 
+									className={styles.closeButton}
+									onClick={() => setIsExpanded(false)}
+									title="Close"
+								>
+									×
+								</button>
+							</div>
+						</div>
+
+						<AnimatePresence mode="wait">
 				{loading ? (
 					<motion.div 
 						key="loading"
@@ -183,6 +227,9 @@ function AIInsights({ showWeeklySummary = false }) {
 							</>
 						)}
 					</motion.div>
+				)}
+			</AnimatePresence>
+				</motion.div>
 				)}
 			</AnimatePresence>
 		</motion.div>

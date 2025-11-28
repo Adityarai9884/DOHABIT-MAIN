@@ -5,39 +5,11 @@ function toggleCompleteYeserday(habits, habitTitle, isTodayCompleted, isYesterda
 	const today = new Date();
 	const yesterday = new Date(today);
 	yesterday.setDate(today.getDate() - 1);
-
-	return habits.map(
-		(habit) => {
-			habit = { ...habit };
-
-			if (habit.title === habitTitle) {
-				let completedDays = [...habit.completedDays];
-
-				if (isYesterdayCompleted) {
-					completedDays = completedDays.filter(
-						(day) => day.date !== getFormattedDate(yesterday)
-					);
-				} else {
-					const completedYesterday = {
-						date: getFormattedDate(yesterday),
-						progress: frequency,
-						isCompYdayBtnUsed: true
-					};
-
-					isTodayCompleted || todayProgress
-						? completedDays.splice(1, 0, completedYesterday)
-						: completedDays.unshift(completedYesterday);
-				};
-
-				habit = {
-					...habit,
-					completedDays
-				};
-			};
-
-			return habit;
-		}
-	);
+	
+	// Check if we're still on the same day as yesterday (i.e., it's not past midnight)
+	// Disable this function completely - cannot change past dates
+	// Only return habits unchanged
+	return habits;
 }
 
 export default toggleCompleteYeserday;

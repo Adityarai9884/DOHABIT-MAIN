@@ -97,12 +97,17 @@ function HabitHeader(props) {
 					)}
 
 					<button
-						style={{ backgroundColor: isTodayCompleted ? baseColor : darkenedColor }}
+						style={{ 
+							backgroundColor: isTodayCompleted ? baseColor : darkenedColor,
+							cursor: isTodayCompleted ? 'not-allowed' : 'pointer',
+							opacity: isTodayCompleted ? 0.9 : 1
+						}}
 						className={`${styles.progressBtn} ${frequency > 1 ? styles.multiFrequency : ''}`}
-						onClick={handleUpdateProgress}
+						onClick={isTodayCompleted ? undefined : handleUpdateProgress}
+						disabled={isTodayCompleted}
 					>
 						{progressPercentage === 100 ? (
-							<FaCheck />
+							<strong>Complete</strong>
 						) : (
 							<strong>{progressPercentage}%</strong>
 						)}
