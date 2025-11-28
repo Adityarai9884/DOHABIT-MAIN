@@ -17,17 +17,22 @@ function achievementsReducer(achievements, actions) {
 		achievement.isUnlocked = true;
 		achievement.unlockDate = new Date();
 
-		if (isInitialRender) {
-			onOpenDialog({
-				title: 'Achievement Unlocked!',
-				text: 'It seems that new achievements have been unlocked!\nYou can check them in the achievements section.'
-			});
-		} else {
-			onOpenDialog({
-				title: 'Achievement Unlocked!',
-				imgSrc: `${process.env.PUBLIC_URL}/img/achievements/${achievement.id}.svg`,
-				text: `"${achievement.title}"\n${achievement.desc}`
-			});
+		// Only show the dialog if this achievement hasn't been shown before
+		if (!achievement.hasBeenShown) {
+			achievement.hasBeenShown = true;
+			
+			if (isInitialRender) {
+				onOpenDialog({
+					title: 'Achievement Unlocked!',
+					text: 'It seems that new achievements have been unlocked!\nYou can check them in the achievements section.'
+				});
+			} else {
+				onOpenDialog({
+					title: 'Achievement Unlocked!',
+					imgSrc: `${process.env.PUBLIC_URL}/img/achievements/${achievement.id}.svg`,
+					text: `"${achievement.title}"\n${achievement.desc}`
+				});
+			};
 		};
 	};
 
@@ -404,7 +409,8 @@ function achievementsReducer(achievements, actions) {
 			(a) => ({
 				id: a.id,
 				isUnlocked: a.isUnlocked,
-				unlockDate: a.unlockDate
+				unlockDate: a.unlockDate,
+				hasBeenShown: a.hasBeenShown
 			})
 		);
 

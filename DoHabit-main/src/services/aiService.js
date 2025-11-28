@@ -51,17 +51,8 @@ export async function generateMotivation(habits) {
 			`You're doing amazing! With ${habits.length} habits being tracked, you're taking control of your life. Small daily improvements lead to stunning results! 🌟`
 		];
 		
-		// Pick message based on performance
-		let message;
-		if (completedToday >= habits.length / 2) {
-			message = messages[1]; // High completion today
-		} else if (totalStreaks > habits.length * 5) {
-			message = messages[2]; // Good streaks
-		} else if (totalCompletions > 50) {
-			message = messages[0]; // Many completions
-		} else {
-			message = messages[Math.floor(Math.random() * messages.length)];
-		}
+		// Always pick a random message to ensure variety on refresh
+		const message = messages[Math.floor(Math.random() * messages.length)];
 
 		return {
 			success: true,

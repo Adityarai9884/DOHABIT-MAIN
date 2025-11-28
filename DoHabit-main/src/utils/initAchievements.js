@@ -17,7 +17,8 @@ function initAchievements() {
 				return {
 					...a,
 					isUnlocked: unlockedAchievement.isUnlocked,
-					unlockDate: unlockedAchievement.unlockDate
+					unlockDate: unlockedAchievement.unlockDate,
+					hasBeenShown: unlockedAchievement.hasBeenShown || false
 				};
 			};
 
